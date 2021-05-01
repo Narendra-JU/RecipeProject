@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
 	}
-	fun observeViewModel(foodType:String,no:Int){
+	private fun observeViewModel(foodType:String, no:Int){
 		viewModel.refresh(foodType,no)
 		viewModel.recipeList.observe(
 			this,

@@ -1,6 +1,9 @@
 package com.example.recipeproject.view
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +22,16 @@ import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.example.recipeproject.R
 import com.example.recipeproject.model.RecipeModel
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.item_recipe_recycler.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.Serializable
 
 
-class RecyclerAdapter(var context:Context,var recipeList: MutableList<RecipeModel.Hit>): RecyclerView.Adapter<RecyclerAdapter.MyHolder>() {
+class RecyclerAdapter(var activity:Activity,var recipeList: MutableList<RecipeModel.Hit>): RecyclerView.Adapter<RecyclerAdapter.MyHolder>() {
     class MyHolder(itemView:View):RecyclerView.ViewHolder(itemView)
     {
         private val image: ImageView =itemView.iv_foodImage
@@ -55,11 +60,6 @@ class RecyclerAdapter(var context:Context,var recipeList: MutableList<RecipeMode
         var recipelst=recipeList.get(position)
 
         holder.bind(recipelst)
-
-
-
-
-
         val coroutineScopeMain= CoroutineScope(Dispatchers.Main)
         coroutineScopeMain.launch {
             val imageLoader=ImageLoader.Builder(holder.itemView.context)
@@ -75,10 +75,16 @@ class RecyclerAdapter(var context:Context,var recipeList: MutableList<RecipeMode
         }
             withContext(Dispatchers.Main){
                 val colorsOuter=palette?.lightMutedSwatch
-
                 holder.itemView.constraint_recycler.setBackgroundColor(colorsOuter?.rgb?:R.color.black)
-
             }
+
+        }
+        holder.itemView.mainPageCardView.setOnClickListener{
+            val options=ActivityOptions.makeSceneTransitionAnimation(activity)
+            val gson= Gson()
+            val intent=Intent(holder.itemView.context,FoodDetailPage::class.java)
+            intent.putExtra("recipeListObject",gson.toJson(recipelst) )
+            holder.itemView.context.startActivity(intent,options.toBundle())
 
         }
 
