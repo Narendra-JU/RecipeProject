@@ -11,8 +11,8 @@ import kotlinx.coroutines.*
 class MainActivityViewModel(application: Application):AndroidViewModel(application) {
     private val coroutineScope=CoroutineScope(Dispatchers.IO)
 
-    val APP_ID="edc75da0"
-    val APP_KEY="dd25f1fdacd7080799029b44ca775a01"
+    val APP_ID="3db7ad61"
+    val APP_KEY="b094cbaef53ef3a6e2459a23032e861f"
     val INITIAL_VALUE=0
     val recipeService=RecipeService.getRecipeWeatherService()
 
