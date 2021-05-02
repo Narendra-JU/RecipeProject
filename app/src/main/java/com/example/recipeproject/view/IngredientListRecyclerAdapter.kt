@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_recipe_ingredient.view.*
 class MyIngredientViewHolder(itemview:View):RecyclerView.ViewHolder(itemview){
 	private val image=itemview.iv_food_ingredients
 	private val ingredientTitle=itemview.tv_ingredient_name
-	private val ingredientCategory=itemview.tv_ingredient_category
+
 	fun bind(recipeModelIngredient:RecipeModel.Hit.Recipe.Ingredient){
 		image.load(recipeModelIngredient.image){
 			crossfade(true)
@@ -21,7 +21,7 @@ class MyIngredientViewHolder(itemview:View):RecyclerView.ViewHolder(itemview){
 			transformations(CircleCropTransformation())
 		}
 		ingredientTitle.text=recipeModelIngredient.text
-		ingredientCategory.text=recipeModelIngredient.foodCategory
+
 	}
 
 }
