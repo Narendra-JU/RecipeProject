@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeproject.R
-import com.example.recipeproject.model.RecipeModel
+import com.example.recipeproject.model.Nutrient
 import kotlinx.android.synthetic.main.item_nutrition_value.view.*
 
 
@@ -13,8 +13,8 @@ class MyIngredientNutritionViewHolder(itemView: View):RecyclerView.ViewHolder(it
 
 }
 
-class IngredientNutritionRecyclerAdapter(var totalNutrition:MutableList<RecipeModel.Hit.Recipe.TotalNutrients>,
-                                         var dailyNutrition:MutableList<RecipeModel.Hit.Recipe.TotalDaily>)
+class IngredientNutritionRecyclerAdapter(var totalNutrition: MutableList<Nutrient?>?,
+                                         var dailyNutrition: MutableList<Nutrient?>?)
 	: RecyclerView.Adapter<MyIngredientNutritionViewHolder>() {
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyIngredientNutritionViewHolder {
 		val view= LayoutInflater.from(parent.context).inflate(R.layout.item_nutrition_value,parent,false)
@@ -22,10 +22,12 @@ class IngredientNutritionRecyclerAdapter(var totalNutrition:MutableList<RecipeMo
 	}
 
 	override fun onBindViewHolder(holder: MyIngredientNutritionViewHolder, position: Int) {
-TODO()
+		holder.itemView.textLabel.text= totalNutrition?.get(position)?.label
+		holder.itemView.tvTotalNutrition.text= "${totalNutrition?.get(position)?.quantity?.toInt().toString()} ${totalNutrition?.get(position)?.unit}"
+		holder.itemView.tvDailyNutrition.text= "${dailyNutrition?.get(position)?.quantity?.toInt().toString()} ${dailyNutrition?.get(position)?.unit}"
 	}
 
 	override fun getItemCount(): Int {
-		TODO("Not yet implemented")
+		return totalNutrition!!.size
 	}
 }

@@ -1,10 +1,11 @@
 package com.example.recipeproject.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.palette.graphics.Palette
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.ImageLoader
 import coil.load
@@ -16,8 +17,6 @@ import com.example.recipeproject.R
 import com.example.recipeproject.model.RecipeModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_food_detail_page.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_recipe_recycler.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +28,10 @@ class FoodDetailPage : AppCompatActivity() {
         setContentView(R.layout.activity_food_detail_page)
         val coroutineScopeMain= CoroutineScope(Dispatchers.Main)
         val gson = Gson()
-        val yourObject = gson.fromJson(intent.getStringExtra("recipeListObject"), RecipeModel.Hit::class.java)
+        val yourObject = gson.fromJson(
+            intent.getStringExtra("recipeListObject"),
+            RecipeModel.Hit::class.java
+        )
         iv_foodDescriptionImage.load(yourObject.recipe?.image){
             crossfade(true)
             crossfade(1000)
@@ -51,7 +53,7 @@ class FoodDetailPage : AppCompatActivity() {
             }
             withContext(Dispatchers.Main){
                 val colorsOuter=palette?.lightVibrantSwatch
-                foodDetailCardview.setBackgroundColor(colorsOuter?.rgb?:R.color.black)
+                foodDetailCardview.setBackgroundColor(colorsOuter?.rgb ?: R.color.black)
 
             }
 
@@ -61,5 +63,40 @@ class FoodDetailPage : AppCompatActivity() {
         rvFoodIngredients.layoutManager= LinearLayoutManager(this)
         rvFoodIngredients.adapter=IngredientListRecyclerAdapter(yourObject.recipe?.ingredients as MutableList<RecipeModel.Hit.Recipe.Ingredient>)
 
+        rvFoodNutrition.layoutManager=LinearLayoutManager(this)
+        rvFoodNutrition.adapter=IngredientNutritionRecyclerAdapter(
+            yourObject.recipe.totalNutrients?.getTotalList(),
+            yourObject.recipe.totalDaily?.getTotalList()
+        )
+
+        iv_foodDescriptionImage.setOnClickListener {
+            yourObject.recipe.url?.let {
+                val intent= Intent(this, WebviewActivity::class.java)
+                intent.putExtra("foodurl", it)
+                startActivity(intent)
+            }
+
+        }
+        fab1.setOnClickListener {
+            yourObject.recipe.url?.let {
+                share(it)
+            }
+        }
+
+
     }
+
+    fun share(str:String) {
+        try {
+            val url: String = str
+            val intent = Intent()
+            intent.action = "android.intent.action.SEND"
+            intent.putExtra("android.intent.extra.TEXT", "$url  Shared using Recipo")
+            intent.type = "text/plain"
+            startActivity(Intent.createChooser(intent, "  Shared from Paperwala"))
+        } catch (unused: Exception) {
+            Toast.makeText(this, "Error !! Try Again Later.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
