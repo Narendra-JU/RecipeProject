@@ -27,12 +27,9 @@ class MainActivity : AppCompatActivity() {
 		observeViewModel("italian", 30)
 		materialButton.setOnClickListener {
 			editText.text.toString().let {
-				observeViewModel(it, 20)
+				observeViewModel(it, 30)
 			}
 		}
-
-
-
 	}
 	private fun observeViewModel(foodType: String, no: Int){
 		viewModel.refresh(foodType, no)

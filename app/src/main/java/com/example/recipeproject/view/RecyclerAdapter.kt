@@ -41,7 +41,7 @@ class RecyclerAdapter(var activity:Activity,var recipeList: MutableList<RecipeMo
         fun bind(recipeModelHit: RecipeModel.Hit){
             image.load(recipeModelHit.recipe?.image){
                 crossfade(true)
-                crossfade(1000)
+                crossfade(2000)
                 transformations(CircleCropTransformation())
 
             }
@@ -87,11 +87,6 @@ class RecyclerAdapter(var activity:Activity,var recipeList: MutableList<RecipeMo
             holder.itemView.context.startActivity(intent,options.toBundle())
 
         }
-
-
-
-
-
     }
 
     override fun getItemCount(): Int {

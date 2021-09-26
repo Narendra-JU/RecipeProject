@@ -1,5 +1,31 @@
 
+†
+Vapp/src/main/java/com/example/recipeproject/view/IngredientNutritionRecyclerAdapter.kt,d\b\db6897700b3f4ddf3a3078dafd087119655c899b
+~
+Napp/src/main/java/com/example/recipeproject/model/util/ItemOffsetDecoration.kt,9\3\93633aadf8420005d2a9a448f090b1191ffe65fa
+r
+Bapp/src/main/java/com/example/recipeproject/view/FoodDetailPage.kt,9\e\9e200b53c10c3c95704b38ef718360c351f1ec63
+q
+Aapp/src/main/java/com/example/recipeproject/view/LoginActivity.kt,2\e\2e1ecd08186d8c7e61cb5fda8f35198ef33b3352
+H
+app/google-services.json,f\d\fd8d34b142d02ec743a8efefefd2c097961666e9
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+z
+Japp/src/main/java/com/example/recipeproject/model/network/RecipeService.kt,9\7\9772156d1a8afeedbcecd48f1d2b8c776ba3c19e
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+
+Qapp/src/main/java/com/example/recipeproject/view/IngredientListRecyclerAdapter.kt,7\e\7e2736687d8c140151bdd883559dc0e7bdfd61f4
 ~
 Napp/src/main/java/com/example/recipeproject/viewmodel/MainActivityViewModel.kt,a\c\ac84aab85122b48138ff74f948d0dcc276dbdf5c
+p
+@app/src/main/java/com/example/recipeproject/view/MainActivity.kt,a\f\afb23cbf9888891b0c84761d4c483583cc40e153
+v
+Fapp/src/main/java/com/example/recipeproject/model/network/RecipeApi.kt,9\9\99d968fa68972a1c758eeef2b03019137c1778b5
+p
+@app/src/main/java/com/example/recipeproject/model/RecipeModel.kt,1\a\1a7bc217519e0421942d2c5590601a0b6fe2ef27
+s
+Capp/src/main/java/com/example/recipeproject/view/RecyclerAdapter.kt,5\5\55a03042a253dbb6c4c2d2d9ebcb693060ddd497
